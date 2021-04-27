@@ -12,14 +12,11 @@ public class MagazinOnline extends Magazin
         return adresaWeb;
     }
 
-    public Produse getProdus()
+    public Produse getProdus(Integer i)
     {
-        for(int i = 1; i<=stoc.length; i++)
+        if(stoc[i].getId() != null)
         {
-            if(stoc[i] == null)
-            {
-                return stoc[i];
-            }
+            return stoc[i];
         }
         return null;
     }

@@ -1,8 +1,18 @@
+import java.io.FileWriter;
+
 public class Magazin
 {
     private String adresa;
     private String nrTelefon;
     protected Produse[] stoc = new Produse[10000];
+
+    public Magazin()
+    {
+        for(int i = 0; i<stoc.length; i++)
+        {
+            stoc[i] = new Produse();
+        }
+    }
 
     public void setAdresa(String Adresa)
     {
@@ -16,9 +26,9 @@ public class Magazin
 
     public void adaugaProdus(Produse P)
     {
-        for(int i = 1; i<=stoc.length; i++)
+        for(int i = 0; i<stoc.length; i++)
         {
-            if(stoc[i] == null)
+            if(stoc[i].getId() == null)
             {
                 stoc[i] = P;
                 break;
@@ -36,15 +46,26 @@ public class Magazin
         return this.nrTelefon;
     }
 
-    public Produse getProdus()
+    public Integer getStocNumber(){ return this.stoc.length; }
+
+    public Boolean getStocStatus()
     {
-        for(int i = 0; i< stoc.length; i++)
+        for(int i = 0; i<stoc.length; i++)
         {
+            if(stoc[i].getId() != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Produse getProdus(Integer i)
+    {
             if(stoc[i].getId() != null)
             {
                 return stoc[i];
             }
-        }
         return null;
     }
 }
